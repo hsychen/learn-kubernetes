@@ -11,7 +11,6 @@ NAME          STATUS   ROLES    AGE     VERSION
 k8s-master    Ready    master   5d14h   v1.17.2
 k8s-worker1   Ready    worker   5d13h   v1.17.2
 k8s-worker2   Ready    worker   5d13h   v1.17.2
-
 ```
 
 跑一個 nginx 的 pod：
@@ -24,7 +23,6 @@ deployment.apps/nginx created
 $ kubectl get pods
 NAME                     READY   STATUS    RESTARTS   AGE
 nginx-6db489d4b7-5rcx7   1/1     Running   0          2m5s
-
 ```
 
 ```bash
@@ -79,16 +77,61 @@ Events:
   Normal  Pulled     2m25s      kubelet, k8s-worker2  Successfully pulled image "nginx"
   Normal  Created    2m24s      kubelet, k8s-worker2  Created container nginx
   Normal  Started    2m24s      kubelet, k8s-worker2  Started container nginx
-
 ```
 
 ```bash
 $ kubectl get pods -o wide
 NAME                     READY   STATUS    RESTARTS   AGE     IP          NODE          NOMINATED NODE   READINESS GATES
 nginx-6db489d4b7-5rcx7   1/1     Running   0          5m38s   10.32.0.2   k8s-worker2   <none>           <none>
+```
+
+環境清空：
+
+```bash
+$ kubectl delete deployments nginx
+deployment.apps "nginx" deleted
+
+$ kubectl get pods
+No resources found in default namespace.
 
 ```
 
+pod-definition.yml：
 
+```yaml
+apiVersion: v1
+
+kind: Pod
+
+metadata:
+  name: mypod-app
+  labels:
+    app: myapp
+
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx
+
+
+```
+
+由 pod definition 建立 pod：
+
+```bash
+$ kubectl create -f pod-bash: _filedir: command not found
+definition.yml
+
+$ kubectl create -f pod-definition.yml
+pod/mypod-app created
+
+$ kubectl get pod
+NAME        READY   STATUS    RESTARTS   AGE
+mypod-app   1/1     Running   0          26s
+
+$ kubectl delete pod mypod-app
+pod "mypod-app" deleted
+
+```
 
 
