@@ -83,6 +83,9 @@ Events:
 ```
 
 ```bash
+$ kubectl get pods -o wide
+NAME                     READY   STATUS    RESTARTS   AGE     IP          NODE          NOMINATED NODE   READINESS GATES
+nginx-6db489d4b7-5rcx7   1/1     Running   0          5m38s   10.32.0.2   k8s-worker2   <none>           <none>
 
 ```
 
