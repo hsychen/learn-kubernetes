@@ -93,7 +93,6 @@ deployment.apps "nginx" deleted
 
 $ kubectl get pods
 No resources found in default namespace.
-
 ```
 
 pod-definition.yml：
@@ -112,8 +111,6 @@ spec:
   containers:
     - name: nginx-container
       image: nginx
-
-
 ```
 
 由 pod definition 建立 pod：
@@ -131,7 +128,12 @@ mypod-app   1/1     Running   0          26s
 
 $ kubectl delete pod mypod-app
 pod "mypod-app" deleted
-
 ```
 
+關於編寫 YAML 檔案：
 
+- PyCharm IDE Community edition
+  
+  - Plugin: [Kubernetes and OpenShift Resource Support](https://plugins.jetbrains.com/plugin/9354-kubernetes-and-openshift-resource-support)
+
+- [YAML Lint](http://www.yamllint.com/)
